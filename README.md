@@ -64,6 +64,7 @@ DATABASE_URL=postgres://<user>:<password>@<host>:<port>/<database>
 
 ```bash
 yarn db:migrate
+yarn db:seed
 ```
 
 ### 5. Build

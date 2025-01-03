@@ -7,7 +7,8 @@
     "build": "tsc",
     "generate:migration": "drizzle-kit generate",
     "apply:migration": "drizzle-kit migrate",
-    "migrate": "drizzle-kit generate && drizzle-kit migrate"
+    "migrate": "drizzle-kit generate && drizzle-kit migrate",
+    "seed": "ts-node ./src/seed.ts"
   },
   "dependencies": {
     "dotenv": "^16.0.0",
