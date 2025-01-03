@@ -17,7 +17,8 @@
     "paths": {
       "@sellhub/db": ["packages/db/src"],
       "@sellhub/shared": ["packages/shared/src"]
-    }
+    },
+    "types": ["jest", "node"]
   },
   "include": ["apps/**/*", "packages/**/*", "services/**/*"],
   "exclude": ["node_modules", "dist"],

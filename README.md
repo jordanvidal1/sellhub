@@ -5,7 +5,7 @@ This microservice helps manage product inventory for an e-commerce platform. It 
 ## Features
 
 - **Track Product Inventory:** Keep stock levels up to date for all products.
-- **Update Inventory:** Reduce inventory when an order is placed.
+- **Update Inventory:** Update inventory when an order is placed or refunded.
 - **Fetch Inventory:** View current stock levels for a specific product.
 - **Error Handling:** Prevents negative stock levels and returns clear error messages.
 - **Scalable Design:** Integrates seamlessly into a monorepo structure.
@@ -33,8 +33,9 @@ monorepo/
 │   ├── dashboard/       # Admin-facing app (Next.js)
 │   ├── store/           # Customer-facing app (Next.js)
 ├── packages/
-│   ├── inventory-api/   # Inventory microservice
 │   ├── db/              # Shared database configuration
+├── services/
+│   ├── inventory-api/   # Inventory microservice
 ```
 
 ## Setup Instructions
@@ -42,7 +43,7 @@ monorepo/
 ### 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
+git clone git@github.com:jordanvidal1/sellhub.git
 cd monorepo
 ```
 
@@ -63,28 +64,55 @@ DATABASE_URL=postgres://<user>:<password>@<host>:<port>/<database>
 ### 4. Run Migrations
 
 ```bash
-yarn workspace db migrate
+yarn db:migrate
 ```
 
-### 5. Start the Inventory Microservice
+### 5. Build
 
 ```bash
-yarn workspace inventory-api start
+yarn build
+```
+
+### 6. Run Services
+
+```bash
+yarn dev
 ```
 
 The API will run on `http://localhost:3001` by default.
 
+The dashboard will run on `http://localhost:3000`, and the store will run on ports `http://localhost:3002`.
+
 ## API Endpoints
+
+### **GET /api/inventory/**
+
+Fetches the current inventory for all products.
+
+- **Responses:**
+  - `200 OK`: Returns total inventory details.
+
+### **GET /api/inventory/:id**
+
+Fetches the current inventory for a product by id.
+
+- **URL Parameter:**
+
+  - `id`: The unique identifier of the product.
+
+- **Responses:**
+  - `200 OK`: Returns product details.
+  - `404 Not Found`: Product not found.
 
 ### **POST /api/inventory/update**
 
-Updates the inventory for a product when an order is placed.
+Updates the inventory for a product when an order is placed or refunded.
 
 - **Request Body:**
 
   ```json
   {
-    "productId": "1234-abcd",
+    "productId": "892fc9f3-1b80-424a-89bf-9ee5e85bf969",
     "quantity": 5
   }
   ```
@@ -94,18 +122,6 @@ Updates the inventory for a product when an order is placed.
   - `400 Bad Request`: Invalid input or insufficient inventory.
   - `404 Not Found`: Product not found.
 
-### **GET /api/inventory/:id**
-
-Fetches the current inventory for a product.
-
-- **URL Parameter:**
-
-  - `id`: The unique identifier of the product.
-
-- **Responses:**
-  - `200 OK`: Returns product details, including `inventoryCount`.
-  - `404 Not Found`: Product not found.
-
 ## Testing
 
 Run unit tests to confirm the microservice works as expected:
@@ -113,18 +129,3 @@ Run unit tests to confirm the microservice works as expected:
 ```bash
 yarn workspace inventory-api test
 ```
-
-## Future Enhancements
-
-- Add functionality to restock inventory.
-- Support batch updates for multiple products.
-- Implement authentication and access control.
-- Add notifications for low stock levels.
-
-## Contributing
-
-We welcome contributions! Fork the repository, make your changes, and submit a pull request.
-
-## License
-
-This project is licensed under the MIT License.

@@ -6,7 +6,7 @@
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "migrate": "yarn workspace @sellhub/db migrate"
+    "db:migrate": "yarn workspace @sellhub/db migrate"
   },
   "devDependencies": {
     "prettier": "^3.2.5",
