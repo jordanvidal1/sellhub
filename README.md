@@ -129,3 +129,7 @@ Run unit tests to confirm the microservice works as expected:
 ```bash
 yarn workspace inventory-api test
 ```
+
+## Postman Collection
+
+I've added a postman collection to the inventory directory to allow further testing

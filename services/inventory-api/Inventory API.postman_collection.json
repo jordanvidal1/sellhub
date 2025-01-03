@@ -1,0 +1,99 @@
+{
+	"info": {
+		"_postman_id": "d3e3993f-590b-4ce6-832e-7c362b9669c1",
+		"name": "Inventory API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38375731"
+	},
+	"item": [
+		{
+			"name": "GET /inventory",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3001/api/inventory",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"inventory"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /inventory/:id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3001/api/inventory/802517c0-ab03-4a7e-a81a-e952ffd5a4ed",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"inventory",
+						"802517c0-ab03-4a7e-a81a-e952ffd5a4ed"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /inventory/update",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"productId\": \"802517c0-ab03-4a7e-a81a-e952ffd5a4ed\",\n    \"quantity\": 6\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/inventory/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"inventory",
+						"update"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
