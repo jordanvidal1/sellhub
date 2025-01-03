@@ -44,7 +44,6 @@ monorepo/
 
 ```bash
 git clone git@github.com:jordanvidal1/sellhub.git
-cd monorepo
 ```
 
 ### 2. Install Dependencies
