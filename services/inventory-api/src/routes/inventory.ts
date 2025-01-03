@@ -73,9 +73,6 @@ router.post('/update', async (req: Request, res: Response): Promise<any> => {
 
     // Calculate the new inventory count
     let newInventoryCount = currentInventory + quantity;
-    console.log('new count', newInventoryCount);
-    console.log('new count', currentInventory);
-    console.log('new count', quantity);
 
     // Ensure inventory doesn't go below zero when subtracting
     if (newInventoryCount < 0) {
