@@ -6,13 +6,13 @@
     "paths": {
       "@sellhub/db": ["../../packages/db/src"],
       "@sellhub/shared": ["../../packages/shared"]
-    }
+    },
+    "types": ["jest", "node"]
   },
   "include": [
     "src/**/*.ts",
     "../../packages/db/src/**/*.ts",
-    "../../packages/shared/**/*.ts",
-    "tests/**/*.ts"
+    "../../packages/shared/**/*.ts"
   ],
   "exclude": ["node_modules", "dist"]
 }

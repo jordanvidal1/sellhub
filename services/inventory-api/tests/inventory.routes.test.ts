@@ -45,7 +45,7 @@ describe('Inventory API', () => {
   });
 
   afterEach(() => {
-    jest.resetAllMocks();
+    // jest.resetAllMocks();
   });
 
   describe('GET /api/inventory', () => {

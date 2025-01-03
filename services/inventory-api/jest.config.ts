@@ -7,6 +7,7 @@ const config: Config = {
     '^.+\\.ts$': ['ts-jest', { isolatedModules: true }],
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'json'],
+  modulePathIgnorePatterns: ['<rootDir>/dist/'],
   transformIgnorePatterns: ['/node_modules/(?!(@sellhub)/)'],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   moduleNameMapper: {
