@@ -1,0 +1,21 @@
+{
+  "name": "db",
+  "version": "1.0.0",
+  "main": "db.ts",
+  "private": true,
+  "scripts": {
+    "generate:migration": "drizzle-kit generate",
+    "apply:migration": "drizzle-kit migrate",
+    "migrate": "drizzle-kit generate && drizzle-kit migrate"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "drizzle-orm": "^1.0.0",
+    "pg": "^8.0.0"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.30.1",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.0.0"
+  }
+}
