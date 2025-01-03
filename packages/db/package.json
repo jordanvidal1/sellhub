@@ -1,9 +1,10 @@
 {
   "name": "db",
   "version": "1.0.0",
-  "main": "db.ts",
+  "main": "dist/index.js",
   "private": true,
   "scripts": {
+    "build": "tsc",
     "generate:migration": "drizzle-kit generate",
     "apply:migration": "drizzle-kit migrate",
     "migrate": "drizzle-kit generate && drizzle-kit migrate"

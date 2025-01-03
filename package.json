@@ -5,7 +5,8 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "migrate": "yarn workspace @sellhub/db migrate"
   },
   "devDependencies": {
     "prettier": "^3.2.5",
@@ -18,7 +19,7 @@
   "packageManager": "yarn@1.22.22",
   "workspaces": [
     "apps/*",
-    "services/*",
-    "packages/*"
+    "packages/*",
+    "services/*"
   ]
 }

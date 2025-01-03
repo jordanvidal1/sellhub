@@ -1,84 +1,130 @@
-# Turborepo starter
+# Inventory Microservice
 
-This is an official starter Turborepo.
+This microservice helps manage product inventory for an e-commerce platform. It provides RESTful endpoints for updating and checking product stock levels, making inventory management easy and reliable.
 
-## Using this example
+## Features
 
-Run the following command:
+- **Track Product Inventory:** Keep stock levels up to date for all products.
+- **Update Inventory:** Reduce inventory when an order is placed.
+- **Fetch Inventory:** View current stock levels for a specific product.
+- **Error Handling:** Prevents negative stock levels and returns clear error messages.
+- **Scalable Design:** Integrates seamlessly into a monorepo structure.
 
-```sh
-npx create-turbo@latest
-```
+## Technology Stack
 
-## What's inside?
+- **Language:** TypeScript
+- **Framework:** Express.js
+- **Database:** PostgreSQL
+- **ORM:** Drizzle ORM
+- **Package Manager:** Yarn
 
-This Turborepo includes the following packages/apps:
+## Prerequisites
 
-### Apps and Packages
+- Node.js (v16 or higher)
+- PostgreSQL database
+- Yarn (package manager)
+- Turbo (for managing the monorepo)
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
+## Project Structure
 
 ```
-cd my-turborepo
-pnpm build
+monorepo/
+├── apps/
+│   ├── dashboard/       # Admin-facing app (Next.js)
+│   ├── store/           # Customer-facing app (Next.js)
+├── packages/
+│   ├── inventory-api/   # Inventory microservice
+│   ├── db/              # Shared database configuration
 ```
 
-### Develop
+## Setup Instructions
 
-To develop all apps and packages, run the following command:
+### 1. Clone the Repository
 
-```
-cd my-turborepo
-pnpm dev
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
+```bash
+git clone <repository-url>
+cd monorepo
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+### 2. Install Dependencies
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
+```bash
+yarn install
 ```
 
-## Useful Links
+### 3. Configure the Database
 
-Learn more about the power of Turborepo:
+Create a `.env` file in the `packages/db/` directory with the following content:
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+```
+DATABASE_URL=postgres://<user>:<password>@<host>:<port>/<database>
+```
+
+### 4. Run Migrations
+
+```bash
+yarn workspace db migrate
+```
+
+### 5. Start the Inventory Microservice
+
+```bash
+yarn workspace inventory-api start
+```
+
+The API will run on `http://localhost:3001` by default.
+
+## API Endpoints
+
+### **POST /api/inventory/update**
+
+Updates the inventory for a product when an order is placed.
+
+- **Request Body:**
+
+  ```json
+  {
+    "productId": "1234-abcd",
+    "quantity": 5
+  }
+  ```
+
+- **Responses:**
+  - `200 OK`: Inventory updated successfully.
+  - `400 Bad Request`: Invalid input or insufficient inventory.
+  - `404 Not Found`: Product not found.
+
+### **GET /api/inventory/:id**
+
+Fetches the current inventory for a product.
+
+- **URL Parameter:**
+
+  - `id`: The unique identifier of the product.
+
+- **Responses:**
+  - `200 OK`: Returns product details, including `inventoryCount`.
+  - `404 Not Found`: Product not found.
+
+## Testing
+
+Run unit tests to confirm the microservice works as expected:
+
+```bash
+yarn workspace inventory-api test
+```
+
+## Future Enhancements
+
+- Add functionality to restock inventory.
+- Support batch updates for multiple products.
+- Implement authentication and access control.
+- Add notifications for low stock levels.
+
+## Contributing
+
+We welcome contributions! Fork the repository, make your changes, and submit a pull request.
+
+## License
+
+This project is licensed under the MIT License.

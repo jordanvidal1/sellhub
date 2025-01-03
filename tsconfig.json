@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "moduleResolution": "node",
+    "declarationMap": true,
+    "composite": true,
+    "rootDir": ".",
+    "target": "ES2017",
+    "module": "CommonJS",
+    "strict": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "@sellhub/db": ["packages/db/src"],
+      "@sellhub/shared": ["packages/shared/src"]
+    }
+  },
+  "include": ["apps/**/*", "packages/**/*", "services/**/*"],
+  "exclude": ["node_modules", "dist"],
+  "references": [
+    {
+      "path": "./packages/db"
+    },
+    {
+      "path": "./packages/shared"
+    }
+  ]
+}
